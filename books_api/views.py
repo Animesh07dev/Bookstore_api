@@ -99,11 +99,6 @@ class AuthorDetailView(APIView):
 
 
     
-    # def show(request,pk):
-    #     if request.method=="GET":
-    #         authors=Author.objects.get(id=pk)
-    #         serializer=AuthorSerializer(authors)
-    #         return JsonResponse(serializer.data)
 
 
 
