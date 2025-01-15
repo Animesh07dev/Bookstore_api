@@ -34,4 +34,10 @@ class AuthorSerializer(serializers.ModelSerializer):
         instance.bio=validated_data.get('bio',instance.bio)
         instance.save()
         return instance
+    
+class newbookSerializer(serializers.ModelSerializer):
+    author = serializers.PrimaryKeyRelatedField(queryset=Author.objects.all())
+    class Meta:
+        model = Book
+        fields = ['id', 'title', 'author','description']
 

@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.http import JsonResponse,HttpResponse
 from .models import Book,Author
 import io
-from .serializers import bookSerializer,AuthorSerializer
+from .serializers import bookSerializer,AuthorSerializer,newbookSerializer
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.views import APIView
@@ -88,15 +88,17 @@ class AuthorDetailView(APIView):
         book.delete()
         return JsonResponse({'msg': 'Data deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
     
+
+def new_version(request, pk=None):
+    if pk:
+        book = get_object_or_404(Book, pk=pk)
+        serializer = newbookSerializer(book)
+    else:
+        books = Book.objects.all()
+        serializer = newbookSerializer(books, many=True)
+    return JsonResponse(serializer.data,safe=False)
+
     
-    
-    
-
-
-
-
-
-
 
     
 

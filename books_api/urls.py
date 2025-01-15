@@ -4,13 +4,15 @@ from .views import BookDetailView,AuthorDetailView
 from . import views
 
 
+
 urlpatterns=[
     path("",views.home_view,name="home"),
-    path('author/',AuthorDetailView.as_view(),name='author-list'),
-    path('author/<int:pk>/', AuthorDetailView.as_view(), name='author-detail'),
+    path('authors/',AuthorDetailView.as_view(),name='author-list'),
+    path('authors/<int:pk>/', AuthorDetailView.as_view(), name='author-detail'),
     path('books/', BookDetailView.as_view(), name='book-list'),
     path('books/<int:pk>/', BookDetailView.as_view(), name='book-detail'),
-
+    path('books/v1/', views.new_version),
+    path('books/v1/<int:pk>/',views.new_version),
 ]
 
 
